@@ -1,9 +1,17 @@
 import Card from "@/components/card";
+import Cloud from "@/components/images";
+import GetList from "@/actions/img-list";
 
 export default function Home() {
+  let images = GetList("folder:/*")
+  console.log(images);
   return (
     <main>
-      <ul className="m-60 flex h-60">
+      {images && images.resources.map(img => console.log(img.public_id))}
+      {images && images?.resources?.map(image => 
+      <Cloud key={image.asset_id} src={image.public_id} alt={image.filename}/>
+      )}
+      {/* <ul className="m-60 flex h-60">
         <li className="w-7/12 bg-[#eae2d9]"></li>
         <li className="w-4/12 bg-[#89938b]"></li>
         <li className="w-1/12 bg-[#c0a292]"></li>
@@ -15,7 +23,7 @@ export default function Home() {
             <div className="bg-[#C0A292] w-full h-full"></div>
           </div>
         </div>
-      </div>
+      </div> */}
       <section className="text-center">
             <h1>Prisliste</h1>
 
@@ -38,6 +46,8 @@ export default function Home() {
               <Card type="Heldags Bryllup" several={true}/>
             </ul>
         </section>
+
+
     </main>
   )
 }
