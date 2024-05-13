@@ -2,14 +2,13 @@ import Card from "@/components/card";
 import Cloud from "@/components/images";
 import GetList from "@/actions/img-list";
 
-export default function Home() {
-  let images = GetList("folder:/*")
-  console.log(images);
+export default async function Home() {
+  let images = await GetList("folder:test/carusel/*")
+
   return (
     <main>
-      {images && images.resources.map(img => console.log(img.public_id))}
-      {images && images?.resources?.map(image => 
-      <Cloud key={image.asset_id} src={image.public_id} alt={image.filename}/>
+      {images?.resources?.map(image => 
+        <Cloud key={image.asset_id} src={image.public_id} alt={image.filename}/>
       )}
       {/* <ul className="m-60 flex h-60">
         <li className="w-7/12 bg-[#eae2d9]"></li>

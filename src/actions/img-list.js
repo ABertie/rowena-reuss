@@ -1,6 +1,6 @@
 import { v2 as cloudinary } from "cloudinary"
 
-export default function GetList(folder) {
+export default async function GetList(folder) {
 
     let images
 
@@ -9,12 +9,14 @@ export default function GetList(folder) {
         api_key: process.env.CLOUD_KEY,
         api_secret: process.env.CLOUD_SECRET,
     })
-
-    cloudinary.search.expression(folder)
+    try {
+        await cloudinary.search.expression(folder)
         .sort_by("public_id", "desc")
         .max_results(30)
         .execute()
-        .then(result => images = result)
-
- 
+        .then(result => images = result) 
+    } catch (error) {
+        return error
+    }
+    return images
 }
