@@ -3,14 +3,14 @@
 import Cloud from "./images"
 import { useState } from "react"
 
-export default function Carousel({images}) {
+export default function Carousel({ images }) {
     const [index, setIndex] = useState(0)
 
     let count = []
-
-    let list = [] 
+    let list = []
+    
     images?.map((image, i) =>
-        list.push(<li key={i} className={`flex items-center justify-center overflow-hidden w-full h-full`}>
+        list.push(<li key={i} className={`flex items-center justify-center overflow-hidden w-full h-full transition-all`}>
             <div className="hidden">{count.push(i)}</div>
             <Cloud src={image} />
         </li>)
@@ -22,13 +22,13 @@ export default function Carousel({images}) {
     }, 5000);
 
     return (
-        <div className="flex flex-col pb-16 h-screen w-full">
+        <div className="flex flex-col pb-12 h-screen w-full">
             <ul className="flex-row h-full w-full overflow-hidden">
                 {list[index]}
             </ul>
-            <ul className="align-center justify-center gap-2 flex p-4">
-                {count?.map(i => 
-                    <li key={i} className={`${i !== index ?"bg-secon-light" : "bg-secon-dark"} p-2 rounded-full`} ></li>
+            <ul className="align-center justify-center gap-2 flex p-2">
+                {count?.map(i =>
+                    <li key={i} className={`${i !== index ? "bg-secon-light" : "bg-secon-dark"} w-3 h-3 rounded-full`}></li>
                 )}
             </ul>
         </div>
