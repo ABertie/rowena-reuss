@@ -1,15 +1,14 @@
 import Card from "@/components/card";
 import Cloud from "@/components/images";
 import GetList from "@/actions/img-list";
+import Carousel from "@/components/carousel";
 
 export default async function Home() {
+  // console.log(images);
   let images = await GetList("folder:test/carusel/*")
-
   return (
     <main>
-      {images?.resources?.map(image => 
-        <Cloud key={image.asset_id} src={image.public_id} alt={image.filename}/>
-      )}
+      <Carousel images={images?.resources}></Carousel>
       {/* <ul className="m-60 flex h-60">
         <li className="w-7/12 bg-[#eae2d9]"></li>
         <li className="w-4/12 bg-[#89938b]"></li>
@@ -24,27 +23,27 @@ export default async function Home() {
         </div>
       </div> */}
       <section className="text-center">
-            <h1>Prisliste</h1>
+        <h1>Prisliste</h1>
 
-            <div>
-                <h2>Foto Session på location<span>(Familie, Konfirmation osv.)</span></h2>
-                <p>Starter på <span>495</span> derefter for:</p>
-                <ul className="flex justify-center gap-8">
-                    <li>5 filer: <span>1000</span></li>
-                    <li>10 filer: <span>1750</span></li>
-                    <li>20 filer: <span>2595</span></li>
-                    <li>Alle filer: <span>2995</span></li>
-                </ul>
-            </div>
+        <div>
+          <h2>Foto Session på location<span>(Familie, Konfirmation osv.)</span></h2>
+          <p>Starter på <span>495</span> derefter for:</p>
+          <ul className="flex justify-center gap-8">
+            <li>5 filer: <span>1000</span></li>
+            <li>10 filer: <span>1750</span></li>
+            <li>20 filer: <span>2595</span></li>
+            <li>Alle filer: <span>2995</span></li>
+          </ul>
+        </div>
 
-            <h2>Bryllup</h2>
-            <ul className="flex">
-              <Card type="Potrætter" pictures="100" time="2" price="4995"/>
-              <Card type="Forberedelse + Vielse + Potrætter" pictures="200" time="4" price="5995"/>
-              <Card type="Forberedelse + Vielse + Potrætter + Recception + Første del af festen" pictures="350" time="8" price="8995"/>
-              <Card type="Heldags Bryllup" several={true}/>
-            </ul>
-        </section>
+        <h2>Bryllup</h2>
+        <ul className="flex">
+          <Card type="Potrætter" pictures="100" time="2" price="4995" />
+          <Card type="Forberedelse + Vielse + Potrætter" pictures="200" time="4" price="5995" />
+          <Card type="Forberedelse + Vielse + Potrætter + Recception + Første del af festen" pictures="350" time="8" price="8995" />
+          <Card type="Heldags Bryllup" several={true} />
+        </ul>
+      </section>
 
 
     </main>
