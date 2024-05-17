@@ -1,11 +1,11 @@
 import Card from "@/components/card";
-import Cloud from "@/components/images";
+// import Cloud from "@/components/images";
 import GetList from "@/actions/img-list";
 import Carousel from "@/components/carousel";
 
 export default async function Home() {
-  // console.log(images);
   let images = await GetList("folder:test/carusel/*")
+  // console.log(images);
   return (
     <main>
       <Carousel images={images?.resources}></Carousel>

@@ -1,22 +1,36 @@
 "use client"
 
-import GetList from "@/actions/img-list"
-import { useEffect, useState } from "react"
 import Cloud from "./images"
-
-// import { useState } from "react"
+import { useState } from "react"
 
 export default function Carousel({images}) {
-    // const [index, setIndex] = useState(0)
+    const [index, setIndex] = useState(0)
+
+    let count = []
+
+    let list = [] 
+    images?.map((image, i) =>
+        list.push(<li key={i} className={`flex items-center justify-center overflow-hidden w-full h-full`}>
+            <div className="hidden">{count.push(i)}</div>
+            <Cloud src={image} />
+        </li>)
+    )
+
+    setTimeout(() => {
+        if (index === count.length - 1) setIndex(0)
+        else setIndex(index + 1)
+    }, 5000);
+
     return (
-        <div className="h-screen pb-20 w-full">
-            <div className="h-full w-full ">
-                {images?.map((image, i) =>
-                    <div key={i} className="flex items-center justify-center overflow-hidden w-screen h-full">
-                        <Cloud src={image} />
-                    </div>
+        <div className="flex flex-col pb-16 h-screen w-full">
+            <ul className="flex-row h-full w-full overflow-hidden">
+                {list[index]}
+            </ul>
+            <ul className="align-center justify-center gap-2 flex p-4">
+                {count?.map(i => 
+                    <li key={i} className={`${i !== index ?"bg-secon-light" : "bg-secon-dark"} p-2 rounded-full`} ></li>
                 )}
-            </div>
+            </ul>
         </div>
     )
 }

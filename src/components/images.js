@@ -1,7 +1,7 @@
 "use client"
 import { CldImage } from 'next-cloudinary';
 
-export default function Cloud({ src }) {
+export default function Cloud({ src, className }) {
   // function clickPrevent(event) {
   //   if (event.button == 2) {
   //     return false
@@ -13,7 +13,7 @@ export default function Cloud({ src }) {
       width={src.width} 
       height={src.height} 
       alt={src.filename} 
-      className='h-auto w-auto'
+      className={`h-auto w-auto ${className}`}
       namedTransformations={['watermarked']}
       priority={true}
       />
