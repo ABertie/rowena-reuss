@@ -1,5 +1,6 @@
 "use client"
 
+import { AnimatePresence, motion } from "framer-motion"
 import Cloud from "./images"
 import { useState } from "react"
 
@@ -8,12 +9,20 @@ export default function Carousel({ images }) {
 
     let count = []
     let list = []
-    
+
     images?.map((image, i) =>
-        list.push(<li key={i} className={`flex items-center justify-center overflow-hidden w-full h-full transition-all`}>
+        list.push(<motion.div
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+                opacity: { duration: 1 }
+            }}
+            className={`flex absolute inset-0 items-center overflow-hidden justify-center`}>
             <div className="hidden">{count.push(i)}</div>
             <Cloud src={image} />
-        </li>)
+        </motion.div>)
     )
 
     setTimeout(() => {
@@ -21,12 +30,19 @@ export default function Carousel({ images }) {
         else setIndex(index + 1)
     }, 5000);
 
+    function move(i) {
+        setIndex(i)
+    }
+
     return (
-        <div className="flex flex-col pb-12 h-screen w-full">
-            <ul className="flex-row h-full w-full overflow-hidden">
-                {list[index]}
-            </ul>
-            <ul className="align-center justify-center gap-2 flex p-2">
+        <div className="flex flex-col h-screen w-full overflow-hidden">
+            <div className="h-full w-full overflow-hidden relative">
+                <AnimatePresence>
+                    {list[index]}
+                </AnimatePresence>
+            </div>
+
+            <ul className="align-center justify-center gap-2 flex p-2 pb-12">
                 {count?.map(i =>
                     <li key={i} className={`${i !== index ? "bg-secon-light" : "bg-secon-dark"} w-3 h-3 rounded-full`}></li>
                 )}
