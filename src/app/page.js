@@ -4,6 +4,7 @@ import Carousel from "@/components/carousel";
 import Cloud from "@/components/images";
 import Heading from "@/components/headings";
 import ToMail from "@/components/to-mail";
+import TestButton from "@/components/test-button";
 
 export default async function Home() {
   let images = await GetList("folder:test/carusel/*")
@@ -75,6 +76,7 @@ export default async function Home() {
         </ul>
       </section> */}
 
+      <TestButton/>
 
       </main>
     </>

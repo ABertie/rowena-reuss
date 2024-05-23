@@ -27,23 +27,12 @@ export default function Carousel({ images }) {
         </motion.div>)
     )
 
-    useEffect(function () {
+    useEffect(function loop() {
         setTimeoutRef(setInterval(() => {
-            // setIndex(prevState => prevState === count.length - 1 ? 0 : prevState + 1)
-            if (index === count.length - 1) setIndex(0)
-            else setIndex(index + 1)
-        }, 1000))
-        // clearTimeout()
-    }, [])
-
-    // let TimeOut
-
-    // if (loop === true) {
-    //     TimeOut = setInterval(() => {
-    //         if (index === count.length - 1) setIndex(0)
-    //         else setIndex(index + 1)
-    //     }, 5000);
-    // }
+            setIndex((prevState) => prevState === count.length - 1 ? 0 : prevState + 1)
+        }, 5000))
+        clearTimeout()
+    }, [loop])
 
     return (
         <section className="flex flex-col h-[35vh] xs:h-[60vh] lg:h-screen w-auto overflow-hidden">
@@ -56,11 +45,9 @@ export default function Carousel({ images }) {
             <div className="align-center justify-center gap-2 flex p-2 pb-9">
                 {count?.map(i =>
                     <button key={i} onClick={() => {
-                        // clearTimeout(timeoutRef)
                         clearInterval(timeoutRef)
-                        setLoop(false)
                         setIndex(i)
-                        // setTimeout(() => {setLoop(true)}, 10000)
+                        setTimeout(() => {setLoop(!loop)}, 5000)
                     }}
                         className={`${i !== index ? "bg-sec-light" : "bg-sec-dark"} w-3 h-3 rounded-full`}></button>
                 )}
