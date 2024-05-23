@@ -1,7 +1,8 @@
 import Card from "@/components/card";
-// import Cloud from "@/components/images";
 import GetList from "@/actions/img-list";
 import Carousel from "@/components/carousel";
+import Cloud from "@/components/images";
+import Heading from "@/components/headings";
 
 export default async function Home() {
   let images = await GetList("folder:test/carusel/*")
@@ -9,20 +10,40 @@ export default async function Home() {
   return (
     <main>
       <Carousel images={images?.resources}></Carousel>
+
+      <section id="aboutme" className="grid grid-cols-1 md:grid-cols-2 gap-8 min-px-8 px-[10%] p-8 my-32 bg-sec-light min-h-[500px]">
+        <div className="md:h-full h-96 overflow-hidden flex items-center justify-center">
+          <Cloud src={{
+            public_id: "test/rowena",
+            width: "3045",
+            height: "4567",
+            filename: "rowena",
+          }} />
+        </div>
+        <article className="flex flex-col gap-4 justify-center">
+          <Heading level="1">Hello my name is Rowena</Heading>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </article>
+      </section>
       {/* <ul className="m-60 flex h-60">
-        <li className="w-7/12 bg-[#eae2d9]"></li>
-        <li className="w-4/12 bg-[#89938b]"></li>
+        <li className="w-7/12 bg-prim-light"></li>
+        <li className="w-4/12 bg-sec-light"></li>
         <li className="w-1/12 bg-[#c0a292]"></li>
       </ul>
 
       <div className="m-44 h-80">
-        <div className="bg-[#eae2d9] p-8 pr-96 w-full h-full">
-          <div className="bg-[#2F4C51] p-8 pt-44 pl-32 w-full h-full">
-            <div className="bg-[#C0A292] w-full h-full"></div>
+        <div className="bg-prim-light p-8 pr-96 w-full h-full">
+          <div className="bg-sec-light p-8 pt-44 pl-32 w-full h-full">
+            <div className="bg-sec-dark w-full h-full"></div>
           </div>
         </div>
       </div> */}
-      <section className="text-center">
+      {/* <section className="text-center">
         <h1>Prisliste</h1>
 
         <div>
@@ -43,7 +64,7 @@ export default async function Home() {
           <Card type="Forberedelse + Vielse + Potrætter + Recception + Første del af festen" pictures="350" time="8" price="8995" />
           <Card type="Heldags Bryllup" several={true} />
         </ul>
-      </section>
+      </section> */}
 
 
     </main>

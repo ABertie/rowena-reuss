@@ -21,7 +21,7 @@ export default function Carousel({ images }) {
             }}
             className={`flex absolute inset-0 items-center overflow-hidden justify-center`}>
             <div className="hidden">{count.push(i)}</div>
-            <Cloud src={image} />
+            <Cloud src={image}/>
         </motion.div>)
     )
 
@@ -35,18 +35,18 @@ export default function Carousel({ images }) {
     }
 
     return (
-        <div className="flex flex-col h-screen w-full overflow-hidden">
+        <section className="flex flex-col h-[35vh] xs:h-[60vh] lg:h-screen w-auto overflow-hidden">
             <div className="h-full w-full overflow-hidden relative">
                 <AnimatePresence>
                     {list[index]}
                 </AnimatePresence>
             </div>
 
-            <ul className="align-center justify-center gap-2 flex p-2 pb-12">
+            <ul className="align-center justify-center gap-2 flex p-2 pb-9">
                 {count?.map(i =>
-                    <li key={i} className={`${i !== index ? "bg-secon-light" : "bg-secon-dark"} w-3 h-3 rounded-full`}></li>
+                    <li key={i} className={`${i !== index ? "bg-sec-light" : "bg-sec-dark"} w-3 h-3 rounded-full`}></li>
                 )}
             </ul>
-        </div>
+        </section>
     )
 }

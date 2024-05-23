@@ -17,10 +17,13 @@ module.exports = {
           light: "#eae2d9",
           dark: "#c0a292",
         },
-        secon: {
+        sec: {
           light: "#89938b",
           dark: "#2f4c51",
         }
+      },
+      screens: {
+        xs: "470px"
       }
     },
   },
