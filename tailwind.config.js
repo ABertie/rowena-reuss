@@ -6,6 +6,16 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+
+    fontSize: {
+      sm: '1rem',
+      base: '1.35rem',
+      lg: '1.5rem',
+      '2xl': '1.65rem',
+      '3xl': '2rem',
+      '4xl': '2.25rem',
+      '5xl': '2.5rem',
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -27,5 +37,30 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  corePlugins: {
+    container: false
+  },
+  plugins: [function ({ addComponents }) {
+    addComponents({
+      '.container': {
+        width: '100%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        paddingLeft: '2rem',
+        paddingRight: '2rem',
+        '@screen xs': {
+          paddingLeft: '10%',
+          paddingRight: '10%',
+        },
+        // '@screen sm': {},
+        // '@screen md': {},
+        '@screen lg': {
+          paddingLeft: '20%',
+          paddingRight: '20%',
+        },
+        // '@screen xl': {},
+        // '@screen 2xl': {},
+      }
+    })
+  }],
 };

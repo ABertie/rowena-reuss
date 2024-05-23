@@ -2,10 +2,12 @@
 
 import { AnimatePresence, motion } from "framer-motion"
 import Cloud from "./images"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function Carousel({ images }) {
     const [index, setIndex] = useState(0)
+    const [loop, setLoop] = useState(true)
+    const [timeoutRef, setTimeoutRef] = useState()
 
     let count = []
     let list = []
@@ -21,18 +23,27 @@ export default function Carousel({ images }) {
             }}
             className={`flex absolute inset-0 items-center overflow-hidden justify-center`}>
             <div className="hidden">{count.push(i)}</div>
-            <Cloud src={image}/>
+            <Cloud src={image} />
         </motion.div>)
     )
 
-    setTimeout(() => {
-        if (index === count.length - 1) setIndex(0)
-        else setIndex(index + 1)
-    }, 5000);
+    useEffect(function () {
+        setTimeoutRef(setInterval(() => {
+            // setIndex(prevState => prevState === count.length - 1 ? 0 : prevState + 1)
+            if (index === count.length - 1) setIndex(0)
+            else setIndex(index + 1)
+        }, 1000))
+        // clearTimeout()
+    }, [])
 
-    function move(i) {
-        setIndex(i)
-    }
+    // let TimeOut
+
+    // if (loop === true) {
+    //     TimeOut = setInterval(() => {
+    //         if (index === count.length - 1) setIndex(0)
+    //         else setIndex(index + 1)
+    //     }, 5000);
+    // }
 
     return (
         <section className="flex flex-col h-[35vh] xs:h-[60vh] lg:h-screen w-auto overflow-hidden">
@@ -42,11 +53,18 @@ export default function Carousel({ images }) {
                 </AnimatePresence>
             </div>
 
-            <ul className="align-center justify-center gap-2 flex p-2 pb-9">
+            <div className="align-center justify-center gap-2 flex p-2 pb-9">
                 {count?.map(i =>
-                    <li key={i} className={`${i !== index ? "bg-sec-light" : "bg-sec-dark"} w-3 h-3 rounded-full`}></li>
+                    <button key={i} onClick={() => {
+                        // clearTimeout(timeoutRef)
+                        clearInterval(timeoutRef)
+                        setLoop(false)
+                        setIndex(i)
+                        // setTimeout(() => {setLoop(true)}, 10000)
+                    }}
+                        className={`${i !== index ? "bg-sec-light" : "bg-sec-dark"} w-3 h-3 rounded-full`}></button>
                 )}
-            </ul>
+            </div>
         </section>
     )
 }
