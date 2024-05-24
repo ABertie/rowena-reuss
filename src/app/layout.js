@@ -1,3 +1,6 @@
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import "./globals.css";
 
 export const metadata = {
@@ -10,6 +13,12 @@ export default function RootLayout({ children }) {
     <html lang="en" className="scroll-smooth scroll-pt-16">
       <body id="home" className="bg-prim-light/15 relative text-base md:text-sm">
         {children}
+        <ToastContainer
+          position="bottom-left"
+          autoClose={10000}
+          theme="colored"
+          stacked 
+        />
       </body>
     </html>
   );
