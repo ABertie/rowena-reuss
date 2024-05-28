@@ -27,8 +27,8 @@ export default function Carousel({ images }) {
         </motion.div>)
     )
 
-    useEffect(function loop() {
-        setTimeoutRef(setInterval(() => {
+    useEffect(() => {
+        if(!timeoutRef) setTimeoutRef(setInterval(() => {
             setIndex((prevState) => prevState === count.length - 1 ? 0 : prevState + 1)
         }, 5000))
         clearTimeout()

@@ -9,9 +9,10 @@ import { toast } from "react-toastify";
 export default function ToMail() {
     const [formState, formAction] = useFormState(sendMail, null);
 
-    useEffect(function () {
+    useEffect(() => {
         if (formState?.success) {
             toast.success("Mail belv sendt")
+            console.log(formState?.success);
         }
     }, [formState])
 

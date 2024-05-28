@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth scroll-pt-16">
+    <html lang="da" className="scroll-smooth scroll-pt-16">
       <body id="home" className="bg-prim-light/15 relative text-base md:text-sm">
         {children}
         <ToastContainer

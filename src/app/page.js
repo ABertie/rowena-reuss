@@ -4,23 +4,22 @@ import Carousel from "@/components/carousel";
 import Cloud from "@/components/images";
 import Heading from "@/components/headings";
 import ToMail from "@/components/to-mail";
+import Link from "next/link";
+import Header from "@/components/header";
 
 export default async function Home() {
-  let images = await GetList("folder:test/carusel/*")
+  let images = await GetList("folder:RowenaReuss/carusel/*")
   // console.log(images);
   return (
     <>
-      <header className="p-4 flex flex-row-reverse gap-4 absolute inset-0 bottom-auto z-50 bg-prim-light/30">
-        <a href="#aboutme">About Me</a>
-        <a href="#home">Home</a>
-      </header>
+      <Header/>
       <main>
         <Carousel images={images?.resources}></Carousel>
 
         <section id="aboutme" className="container grid grid-cols-1 md:grid-cols-2 md:h-fit gap-8 py-8 my-32 bg-sec-light min-h-[500px]">
           <div className="md:h-[80vh] max-h-[500px] h-96 overflow-hidden flex items-center justify-center">
             <Cloud src={{
-              public_id: "test/rowena",
+              public_id: "RowenaReuss/Rowena",
               width: "3045",
               height: "4567",
               filename: "rowena",
@@ -37,7 +36,9 @@ export default async function Home() {
           </article>
         </section>
 
-        <ToMail />
+        <div id="contakt">
+          <ToMail />
+        </div>
 
         {/* <ul className="m-60 flex h-60">
         <li className="w-7/12 bg-prim-light"></li>

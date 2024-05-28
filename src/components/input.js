@@ -5,7 +5,7 @@ import { toast } from "react-toastify"
 
 export default function Input({ type, name, placeholder, status = null, className }) {
 
-    useEffect(function () {
+    useEffect(() => {
         if (status !== null) {
             status.map(m => toast.error(m))
         }
