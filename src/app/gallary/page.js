@@ -4,40 +4,22 @@ import Cloud from "@/components/images";
 import Link from "next/link";
 
 export default async function Gallary() {
-    let images = await GetList("folder:RowenaReuss/*")
+    let images = await GetList("folder:RowenaReuss/gallary/*")
     let folders = []
-
-    function shuffle(array) {
-        let currentIndex = array.length;
-
-        // While there remain elements to shuffle...
-        while (currentIndex != 0) {
-
-            // Pick a remaining element...
-            let randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex--;
-
-            // And swap it with the current element.
-            [array[currentIndex], array[randomIndex]] = [
-                array[randomIndex], array[currentIndex]];
-        }
-    }
-
-    shuffle(images.resources);
-    //   console.log(images.resources);
 
     return (
         <>
             <Header />
-            <main>
-                {images?.resources?.map(image => !image.folder.includes("/")
+            <main className="grid grid-cols-3">
+                {images?.resources?.map(image => !image.folder.includes("RowenaReuss/gallary/") // er der nogle under mapper? ( gallary/ )
                     ? <Cloud key={image.asset_id} src={image} />
-                    : !folders.includes(image.folder.replace("RowenaReuss/", ""))
-                        ? <Link key={folders.push(image.folder.replace("RowenaReuss/", ""))} href={`/gallary/${image.folder.replace("RowenaReuss/", "")}`}>
+                    : !folders.includes(image.folder) && !image.folder.replace("RowenaReuss/gallary/", "").includes("/") // exsitere folderen i folders arrayet og er der nogle undermapper i?
+                            ? <Link key={folders.push(image.folder)} href={`/${image.folder.replace("RowenaReuss/", "")}`} > {/* sætter mappen i array folders */}
                             <Cloud src={image} />
                         </Link>
-                        : "")}
-            </main>
+                        : ""
+                        )}
+            </main> 
         </>
     )
 }
