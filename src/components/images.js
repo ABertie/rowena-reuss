@@ -2,7 +2,7 @@
 import { CldImage } from 'next-cloudinary';
 
 export default function Cloud({ src, className }) {
-  // console.log(screen);
+  // console.log(src);
   return (
     <CldImage
       src={src.public_id}
