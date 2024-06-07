@@ -1,4 +1,4 @@
-import GetList from "@/actions/img-list"
+import GetList from "@/actions/cloud-list"
 import Header from "@/components/header"
 import Cloud from "@/components/images"
 import Link from "next/link"

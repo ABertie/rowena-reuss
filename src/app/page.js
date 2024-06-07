@@ -1,11 +1,11 @@
-import Card from "@/components/card";
-import GetList from "@/actions/img-list";
+// import Card from "@/components/card";
 import Carousel from "@/components/carousel";
-import Cloud from "@/components/images";
 import Heading from "@/components/headings";
 import ToMail from "@/components/to-mail";
-import Link from "next/link";
+// import Link from "next/link";
 import Header from "@/components/header";
+import Image from "next/image";
+import GetList from "@/actions/cloud-list";
 
 export default async function Home() {
   let images = await GetList("folder:RowenaReuss/carusel/*")
@@ -18,12 +18,8 @@ export default async function Home() {
 
         <section id="aboutme" className="container grid grid-cols-1 md:grid-cols-2 md:h-fit gap-8 py-8 my-32 bg-sec-light min-h-[500px]">
           <div className="md:h-[80vh] max-h-[500px] h-96 overflow-hidden flex items-center justify-center">
-            <Cloud src={{
-              public_id: "RowenaReuss/Rowena",
-              width: "3045",
-              height: "4567",
-              filename: "rowena",
-            }} />
+
+            {/* <img src="https://ik.imagekit.io/dbmmghwyv/IMG_9075.jpg" /> */}
           </div>
           <article className="flex flex-col gap-4 justify-center">
             <Heading level="1">Hello my name is Rowena</Heading>

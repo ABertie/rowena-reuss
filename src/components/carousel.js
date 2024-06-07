@@ -1,7 +1,7 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
-import Cloud from "./images"
+import Cloud from "./cloud"
 import { useEffect, useState } from "react"
 
 export default function Carousel({ images }) {
