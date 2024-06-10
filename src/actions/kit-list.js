@@ -1,19 +1,13 @@
-import { stringify } from "postcss"
+import imagekit from "@/lib/image-kit";
 
-export default async  function GetList(folder) {
+export default async function GetKit(folder) {
     try {
-        const response = fetch("https://api.imagekit.io/v1/files", {
-            method: "GET",
-            body: stringify({
-                type: "all",
-                path: "/gallery/",
-                fileType: "image",
-            }),
-            hearder: {
-                "authorization": btoa()
-            }
+        const response = await imagekit.listFiles({
+            type: "all",
+            path: folder
         })
+        return response
     } catch (error) {
-        return error   
+        return error
     }
 }

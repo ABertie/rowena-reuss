@@ -1,25 +1,24 @@
-// import Card from "@/components/card";
 import Carousel from "@/components/carousel";
 import Heading from "@/components/headings";
 import ToMail from "@/components/to-mail";
-// import Link from "next/link";
 import Header from "@/components/header";
-import Image from "next/image";
 import GetList from "@/actions/cloud-list";
+import KitImage from "@/components/kit-image";
+import GetKit from "@/actions/kit-list";
 
 export default async function Home() {
-  let images = await GetList("folder:RowenaReuss/carusel/*")
-  // console.log(images);
+  // let images = await GetList("folder:RowenaReuss/carusel/*")
+  let kit = await GetKit("/carousel/")
+
   return (
     <>
-      <Header/>
+      <Header />
       <main>
-        <Carousel images={images?.resources}></Carousel>
+        <Carousel images={kit}></Carousel>
 
         <section id="aboutme" className="container grid grid-cols-1 md:grid-cols-2 md:h-fit gap-8 py-8 my-32 bg-sec-light min-h-[500px]">
           <div className="md:h-[80vh] max-h-[500px] h-96 overflow-hidden flex items-center justify-center">
-
-            {/* <img src="https://ik.imagekit.io/dbmmghwyv/IMG_9075.jpg" /> */}
+            <KitImage src="/IMG_9075.jpg" />
           </div>
           <article className="flex flex-col gap-4 justify-center">
             <Heading level="1">Hello my name is Rowena</Heading>

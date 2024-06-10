@@ -1,3 +1,5 @@
+"use client"
+
 import { IKContext, IKImage } from "imagekitio-react";
 
 export default function KitImage({src}) {
@@ -10,7 +12,7 @@ export default function KitImage({src}) {
                 loading="lazy"
                 lqip={{ active: true }} // smart lazyloding
                 transformation={[{
-                    custom: "ik_ml_thumbnail"
+                    n: "watermark"
                 }]}
                 />
 

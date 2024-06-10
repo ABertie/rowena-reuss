@@ -1,8 +1,8 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
-import Cloud from "./cloud"
 import { useEffect, useState } from "react"
+import KitImage from "./kit-image"
 
 export default function Carousel({ images }) {
     const [index, setIndex] = useState(0)
@@ -21,18 +21,18 @@ export default function Carousel({ images }) {
             transition={{
                 opacity: { duration: 1 }
             }}
-            className={`flex absolute inset-0 items-center overflow-hidden justify-center`}>
+            className={`flex absolute inset-0 items-center overflow-hidden justify-center `}>
             <div className="hidden">{count.push(i)}</div>
-            <Cloud src={image} />
+            <KitImage src={image.filePath}/>
         </motion.div>)
     )
 
-    useEffect(() => {
-        if(!timeoutRef) setTimeoutRef(setInterval(() => {
-            setIndex((prevState) => prevState === count.length - 1 ? 0 : prevState + 1)
-        }, 5000))
-        clearTimeout()
-    }, [loop])
+    // useEffect(() => {
+    //     if(!timeoutRef) setTimeoutRef(setInterval(() => {
+    //         setIndex((prevState) => prevState === count.length - 1 ? 0 : prevState + 1)
+    //     }, 5000))
+    //     clearTimeout()
+    // }, [loop])
 
     return (
         <section className="flex flex-col h-[35vh] xs:h-[60vh] lg:h-screen w-auto overflow-hidden">
