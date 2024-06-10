@@ -2,7 +2,6 @@ import Carousel from "@/components/carousel";
 import Heading from "@/components/headings";
 import ToMail from "@/components/to-mail";
 import Header from "@/components/header";
-import GetList from "@/actions/cloud-list";
 import KitImage from "@/components/kit-image";
 import GetKit from "@/actions/kit-list";
 

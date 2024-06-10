@@ -1,24 +1,50 @@
 "use client"
 
-import SignedKit from "@/actions/signed-kit";
+import axios from "axios";
 import { IKContext, IKImage } from "imagekitio-react";
+import { useEffect, useState } from "react";
 
-export default function KitImage({src}) {
-    let imageURL = SignedKit(src)
+export default function KitImage({ src }) {
+    const [imageURL, setImageURL] = useState(null)
+    const [authenticator, setAuthenticator] = useState({})
 
-    return(
-        <IKContext 
-            urlEndpoint="https://ik.imagekit.io/dbmmghwyv">
+    useEffect(function () {
+        axios({
+            method: "GET",
+            url: process.env.NEXT_PUBLIC_HOST + "/api/signed-img",
+            params: {
+                src
+            }
+        })
+            .then(function (response) {
+                setImageURL(response.data.url)
+            })
 
-            <IKImage 
-                path={imageURL}
-                loading="lazy"
-                lqip={{ active: true }} // smart lazyloding
-                transformation={[{
-                    n: "watermark"
-                }]}
-                />
+        axios({
+            method: "GET",
+            url: process.env.NEXT_PUBLIC_HOST + "/api/auth",
+        })
+            .then(function (response) {
+                const { signature, expire, token } = response.data;
+                setAuthenticator({ signature, expire, token })
+            })
 
-        </IKContext>
-    )
+    }, [])
+
+    return imageURL && (<IKContext
+        urlEndpoint="https://ik.imagekit.io/dbmmghwyv"
+        authenticator={authenticator}
+    >
+
+        <IKImage
+            path={imageURL}
+            loading="lazy"
+            lqip={{ active: true }} // smart lazyloding
+            transformation={[{
+                n: "watermark"
+            }]}
+        />
+
+    </IKContext>)
+
 }
