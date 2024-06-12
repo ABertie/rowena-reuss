@@ -4,7 +4,8 @@ export default async function GetKit(folder) {
     try {
         const response = await imagekit.listFiles({
             type: "all",
-            path: folder
+            path: folder,
+            sort: "ASC_UPDATED"
         })
         return response
     } catch (error) {
