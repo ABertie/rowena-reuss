@@ -4,7 +4,7 @@ import axios from "axios";
 import { IKContext, IKImage } from "imagekitio-react";
 import { useEffect, useState } from "react";
 
-export default function KitImage({ src, className }) {
+export default function KitImage({ src }) {
     const [imageURL, setImageURL] = useState(null)
     const [authenticator, setAuthenticator] = useState({})
 

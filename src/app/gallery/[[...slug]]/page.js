@@ -16,14 +16,15 @@ export default async function Gallery({ params }) {
             <Header />
             <main className="container lg:px-[10%] pt-20 flex flex-wrap gap-2
             *:flex *:items-center *:justify-center *:overflow-hidden *:flex-auto *:min-h-24 *:max-h-[40vh]">
-            {/* container lg:px-[10%] pt-20 *:max-h-96 *:min-h-36 grid grid-cols-[repeat(22,1fr)] grid-flow-row-dense grid-rows-[repeat(auto-fill,min-context] gap-2 */}
-            {/* container lg:px-[10%] columns-[10rem] md:columns-3xs pt-20 *:min-h-20 gap-2 *:mb-2 *:last:mb-0 */}
+                {/* container lg:px-[10%] pt-20 *:max-h-96 *:min-h-36 grid grid-cols-[repeat(22,1fr)] grid-flow-row-dense grid-rows-[repeat(auto-fill,min-context] gap-2 */}
+                {/* container lg:px-[10%] columns-[10rem] md:columns-3xs pt-20 *:min-h-20 gap-2 *:mb-2 *:last:mb-0 */}
                 {images?.map(image => image.type !== "folder"
-                    ? <div className={image.height < image.width ? "aspect-[3/2]" : "aspect-[2/3]"}>
-                        <KitImage
+                    ? <div
                         key={image.fileId}
-                        src={image.filePath}
-                    />
+                        className={image.height < image.width ? "aspect-[3/2]" : "aspect-[2/3]"}>
+                        <KitImage
+                            src={image.filePath}
+                        />
                     </div>
                     : <Folder
                         key={image.folderId}

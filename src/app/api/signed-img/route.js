@@ -17,7 +17,7 @@ export async function GET(request) {
         //     "height" : "300",
         //     "width" : "400"
         // }],
-        signed : false,
+        signed : true,
         expireSeconds : 300
     })
     return NextResponse.json({

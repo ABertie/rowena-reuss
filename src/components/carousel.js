@@ -27,12 +27,12 @@ export default function Carousel({ images }) {
         </motion.div>)
     )
 
-    // useEffect(() => {
-    //     if(!timeoutRef) setTimeoutRef(setInterval(() => {
-    //         setIndex((prevState) => prevState === count.length - 1 ? 0 : prevState + 1)
-    //     }, 5000))
-    //     clearTimeout()
-    // }, [loop])
+    useEffect(() => {
+        if(!timeoutRef) setTimeoutRef(setInterval(() => {
+            setIndex((prevState) => prevState === count.length - 1 ? 0 : prevState + 1)
+        }, 5000))
+        clearTimeout()
+    }, [loop])
 
     return (
         <section className="flex flex-col h-[35vh] xs:h-[60vh] lg:h-screen w-auto overflow-hidden">
