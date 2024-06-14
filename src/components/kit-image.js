@@ -31,20 +31,21 @@ export default function KitImage({ src, className }) {
 
     }, [])
 
-    return imageURL && (<IKContext
-        urlEndpoint="https://ik.imagekit.io/dbmmghwyv"
-        authenticator={authenticator}
-    >
+    return imageURL && (
+        <IKContext
+            urlEndpoint="https://ik.imagekit.io/dbmmghwyv"
+            authenticator={authenticator}
+        >
 
-        <IKImage
-            path={imageURL}
-            loading="lazy"
-            lqip={{ active: true }} // smart lazyloding
-            transformation={[{
-                n: "watermark"
-            }]}
-        />
+            <IKImage
+                path={imageURL}
+                loading="lazy"
+                lqip={{ active: true }} // smart lazyloding
+                transformation={[{
+                    n: "watermark"
+                }]}
+            />
 
-    </IKContext>)
-
+        </IKContext>
+    )
 }
