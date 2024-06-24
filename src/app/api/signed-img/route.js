@@ -10,17 +10,13 @@ export async function GET(request) {
 
     var imageURL = imagekit.url({
         path : src,
-        // queryParameters : {
-        //     "v" : "123"
-        // },
-        // transformation : [{
-        //     "height" : "300",
-        //     "width" : "400"
-        // }],
+        transformation : [{
+            named: "watermark"
+        }],
         signed : true,
         expireSeconds : 300
     })
     return NextResponse.json({
-        url: imageURL.replace("https://ik.imagekit.io/dbmmghwyv", "")
+        url: imageURL
     })
 }

@@ -6,29 +6,23 @@ import { useEffect, useState } from "react";
 
 export default function KitImage({ src }) {
     const [imageURL, setImageURL] = useState(null)
-    const [authenticator, setAuthenticator] = useState({})
+
+    async function authenticator() {
+        const response = await axios("/api/ik/auth")
+        const data = await response.json()
+        return data
+    }
 
     useEffect(function () {
         axios({
-            method: "GET",
-            url: process.env.NEXT_PUBLIC_HOST + "/api/signed-img",
+            url: "/api/signed-img",
             params: {
                 src
             }
         })
             .then(function (response) {
-                setImageURL(response.data.url)
+                setImageURL(response.data.url);
             })
-
-        axios({
-            method: "GET",
-            url: process.env.NEXT_PUBLIC_HOST + "/api/auth",
-        })
-            .then(function (response) {
-                const { signature, expire, token } = response.data;
-                setAuthenticator({ signature, expire, token })
-            })
-
     }, [])
 
     return imageURL && (
@@ -38,12 +32,12 @@ export default function KitImage({ src }) {
         >
 
             <IKImage
-                path={imageURL}
-                loading="lazy"
-                lqip={{ active: true }} // smart lazyloding
-                transformation={[{
-                    n: "watermark"
-                }]}
+                src={imageURL}
+            // loading="lazy"
+            // lqip={{ active: true }} // smart lazyloding
+            // transformation={[{
+            //     n: "watermark"
+            // }]}
             />
 
         </IKContext>
