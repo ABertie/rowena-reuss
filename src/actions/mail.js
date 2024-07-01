@@ -38,6 +38,7 @@ export function sendMail(prevState, formdata) {
         return mailValider(formdata)
     }
     else {
+        // TODO : send Funtion
         return { success: "Jaaaaaah" }
     }
 }

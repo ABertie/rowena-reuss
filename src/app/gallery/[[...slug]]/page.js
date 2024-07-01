@@ -1,7 +1,10 @@
-import GetKit from "@/actions/kit-list"
 import Header from "@/components/header"
 import Folder from "@/components/folder"
+import Footer from "@/components/footer"
+
 import KitImage from "@/components/kit-image"
+
+import GetKit from "@/actions/kit-list"
 
 export default async function Gallery({ params }) {
     let Slug = !params.slug
@@ -32,6 +35,7 @@ export default async function Gallery({ params }) {
                     />
                 )}
             </main>
+            <Footer />
         </>
     )
 }

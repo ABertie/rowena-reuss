@@ -1,8 +1,9 @@
 "use client"
 
+import KitImage from "./kit-image"
+
 import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useState } from "react"
-import KitImage from "./kit-image"
 
 export default function Carousel({ images }) {
     const [index, setIndex] = useState(0)

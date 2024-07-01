@@ -1,6 +1,7 @@
 "use client"
 
 import Input from "./input";
+
 import { useFormState } from "react-dom";
 import { sendMail } from "@/actions/mail"
 import { useEffect } from "react";
@@ -19,6 +20,13 @@ export default function ToMail() {
     return (
         <form action={formAction}
             className="container bg-sec-dark my-32 py-16 grid gap-8 md:grid-cols-2">
+
+                { /*
+                TODO:
+                * beslut hvilke inputfelter der skal bruges
+                * sæt sendEmail funtionen op (brug evt.[https://medium.com/@abilsavio/email-contact-form-using-nextjs-app-router-60c29fe70644])
+                */}
+
             <Input
                 type="text"
                 name="name"
@@ -27,7 +35,7 @@ export default function ToMail() {
                 status={formState?.errors?.name ? formState?.errors?.name : null}
             />
             <Input
-                type="text"
+                type="email"
                 name="email"
                 placeholder="You email"
                 className="md:col-start-1"

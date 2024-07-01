@@ -1,6 +1,7 @@
+import KitImage from "./kit-image";
+
 import GetKit from "@/actions/kit-list";
 import Link from "next/link";
-import KitImage from "./kit-image";
 
 export default async function Folder({ folder }) {
     let images = await GetKit(folder.folderPath)
