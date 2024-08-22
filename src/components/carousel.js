@@ -9,37 +9,42 @@ export default function Carousel({ images }) {
     const [index, setIndex] = useState(0)
     const [loop, setLoop] = useState(true)
     const [timeoutRef, setTimeoutRef] = useState()
+    const [list, setList] = useState([])
+    const [count] = useState([])
 
-    let count = []
-    let list = []
+    const loopTime = 5000 // 5 sek
 
-    images?.map((image, i) =>
-        list.push(<motion.div
-            key={i}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{
-                opacity: { duration: 1 }
-            }}
-            className={`flex absolute inset-0 items-center overflow-hidden justify-center `}>
-            <div className="hidden">{count.push(i)}</div>
-            <KitImage src={image.filePath}/>
-        </motion.div>)
-    )
+    useEffect(function () {
+        let List = []
+        images?.map((image, i) =>
+            List.push(<motion.div
+                key={i}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{
+                    opacity: { duration: 1 }
+                }}
+                className={`flex absolute inset-0 items-center overflow-hidden justify-center `}>
+                <div className="hidden">{count.push(i)}</div>
+                <KitImage src={image.filePath} />
+            </motion.div>)
+        )
+        setList(List)
+    }, [])
 
-    useEffect(() => {
-        if(!timeoutRef) setTimeoutRef(setInterval(() => {
-            setIndex((prevState) => prevState === count.length - 1 ? 0 : prevState + 1)
-        }, 5000))
-        clearTimeout()
-    }, [loop])
+    // useEffect(() => {
+    //     if (!timeoutRef) setTimeoutRef(setInterval(() => {
+    //         setIndex((prevState) => prevState === count.length - 1 ? 0 : prevState + 1)
+    //     }, loopTime))
+    //     clearTimeout()
+    // }, [loop])
 
     return (
         <section className="flex flex-col h-[35vh] xs:h-[60vh] lg:h-screen w-auto overflow-hidden">
             <div className="h-full w-full overflow-hidden relative">
                 <AnimatePresence>
-                    {list[index]}
+                    {list && list[index]}
                 </AnimatePresence>
             </div>
 
@@ -47,10 +52,12 @@ export default function Carousel({ images }) {
                 {count?.map(i =>
                     <button key={i} onClick={() => {
                         clearInterval(timeoutRef)
+                        setTimeoutRef(undefined)
                         setIndex(i)
-                        setTimeout(() => {setLoop(!loop)}, 5000)
+                        setTimeout(() => { setLoop(!loop) }, loopTime)
                     }}
-                        className={`${i !== index ? "bg-sec-light" : "bg-sec-dark"} w-3 h-3 rounded-full`}></button>
+                        className={`${i !== index ? "bg-sec-light" : "bg-sec-dark"} w-3 h-3 rounded-full`}>
+                    </button>
                 )}
             </div>
         </section>
