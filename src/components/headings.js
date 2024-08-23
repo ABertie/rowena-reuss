@@ -1,4 +1,4 @@
-export default function Heading({ children , level = "2", className}) {
+export default function Heading({ children, level = "2", className }) {
     switch (level) {
         case "1":
             return <h1 className={`font-bold text-sec-dark text-3xl ${className}`}>{children}</h1>

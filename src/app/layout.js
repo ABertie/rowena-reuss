@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
           position="bottom-left"
           autoClose={10000}
           theme="colored"
-          stacked 
+          stacked
         />
       </body>
     </html>

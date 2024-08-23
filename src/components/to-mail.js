@@ -21,7 +21,7 @@ export default function ToMail() {
         <form action={formAction}
             className="container bg-sec-dark my-32 py-16 grid gap-8 md:grid-cols-2">
 
-                { /*
+            { /*
                 TODO:
                 * beslut hvilke inputfelter der skal bruges
                 * sæt sendEmail funtionen op (brug evt.[https://medium.com/@abilsavio/email-contact-form-using-nextjs-app-router-60c29fe70644])

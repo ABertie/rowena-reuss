@@ -9,12 +9,12 @@ export async function GET(request) {
     imagekit.getAuthenticationParameters()
 
     var imageURL = imagekit.url({
-        path : src,
-        transformation : [{
+        path: src,
+        transformation: [{
             named: "watermark"
         }],
-        signed : true,
-        expireSeconds : 300
+        signed: true,
+        expireSeconds: 300
     })
     return NextResponse.json({
         url: imageURL
