@@ -1,0 +1,65 @@
+{
+  "id": "about",
+  "type": "SharedSlice",
+  "name": "About",
+  "description": "About",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "image": {
+          "type": "Text",
+          "config": {
+            "label": "Image",
+            "placeholder": "/RowenaReuss.jpg"
+          }
+        },
+        "titel": {
+          "type": "Text",
+          "config": {
+            "label": "Titel",
+            "placeholder": ""
+          }
+        },
+        "text": {
+          "type": "Group",
+          "config": {
+            "label": "Text",
+            "repeat": true,
+            "fields": {
+              "paragraph": {
+                "type": "Text",
+                "config": {
+                  "label": "Paragraph",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "colortheme": {
+          "type": "Select",
+          "config": {
+            "label": "ColorTheme",
+            "placeholder": "",
+            "options": [
+              "Brand",
+              "Darkest",
+              "Dark",
+              "Mid",
+              "Light",
+              "Lightest"
+            ],
+            "default_value": "Brand"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -19,7 +19,7 @@ export default function ToMail() {
 
     return (
         <form action={formAction}
-            className="container bg-sec-dark my-32 py-16 grid gap-8 md:grid-cols-2">
+            className="container bg-darkest my-32 py-16 grid gap-8 md:grid-cols-2">
 
                 { /*
                 TODO:
@@ -50,7 +50,7 @@ export default function ToMail() {
             />
             <button
                 type="submit"
-                className="py-2 px-4 bg-prim-dark text-white md:col-start-1">
+                className="py-2 px-4 bg-mid text-lightest md:col-start-1">
                 Send
             </button>
         </form>

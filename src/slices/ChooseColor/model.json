@@ -1,0 +1,35 @@
+{
+  "id": "test",
+  "type": "SharedSlice",
+  "name": "ChooseColor",
+  "description": "Test",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "color": {
+          "type": "Select",
+          "config": {
+            "label": "Color",
+            "placeholder": "Vælg farve",
+            "options": [
+              "Brand",
+              "Darkest",
+              "Dark",
+              "Mid",
+              "Light",
+              "Lightest"
+            ],
+            "default_value": "Brand"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

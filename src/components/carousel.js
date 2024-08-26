@@ -56,7 +56,7 @@ export default function Carousel({ images }) {
                         setIndex(i)
                         setTimeout(() => { setLoop(!loop) }, loopTime)
                     }}
-                        className={`${i !== index ? "bg-sec-light" : "bg-sec-dark"} w-3 h-3 rounded-full`}>
+                        className={`${i !== index ? "bg-dark" : "bg-darkest"} w-3 h-3 rounded-full`}>
                     </button>
                 )}
             </div>

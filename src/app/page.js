@@ -1,12 +1,15 @@
 import Header from "@/components/header";
 import Carousel from "@/components/carousel";
-import AboutMe from "@/components/about";
+import About from "@/components/about";
 import ToMail from "@/components/to-mail";
 import Footer from "@/components/footer";
 
 import GetKit from "@/actions/kit-list";
+import { createClient } from "@/prismicio";
 
 export default async function Home() {
+  const client = createClient();
+  const page = await client.getSingle("home_page");
   let kit = await GetKit("/carousel/")
 
   return (
@@ -16,7 +19,9 @@ export default async function Home() {
         <Carousel images={kit}></Carousel>
 
         <div id="aboutme" >
-          <AboutMe />
+          {page.data.slices.map(item => (
+            item.slice_type === 'about' && <About key={item.slice_type} Primary={item.primary} />
+            ))}
         </div>
 
         <div id="contakt">
@@ -28,6 +33,7 @@ export default async function Home() {
     </>
   )
 }
+
 
 {/* <ul className="m-60 flex h-60">
 <li className="w-7/12 bg-prim-light"></li>

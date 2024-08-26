@@ -1,0 +1,42 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"image": {
+				"__TYPE__": "FieldContent",
+				"value": "look",
+				"type": "Text"
+			},
+			"text": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"paragraph",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "tool",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			},
+			"colortheme": {
+				"__TYPE__": "FieldContent",
+				"value": "Brand",
+				"type": "Select"
+			},
+			"titel": {
+				"__TYPE__": "FieldContent",
+				"value": "numeral",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

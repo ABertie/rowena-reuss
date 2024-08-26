@@ -22,14 +22,12 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        prim: {
-          light: "#eae2d9",
-          dark: "#c0a292",
-        },
-        sec: {
-          light: "#89938b",
-          dark: "#2f4c51",
-        }
+        brand: '#333333',
+        darkest: '#2f4c51',
+        dark: '#89938b',
+        mid: '#2f4c51',
+        light: '#eae2d9',
+        lightest: '#ffffff',
       },
       screens: {
         xs: "470px"
