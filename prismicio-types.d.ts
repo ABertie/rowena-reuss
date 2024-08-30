@@ -4,11 +4,93 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Content for Color documents
+ */
+interface ColorDocumentData {
+  /**
+   * Brand field in *Color*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: color.brand
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  brand: prismic.ColorField;
+
+  /**
+   * Darkest field in *Color*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: color.darkest
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  darkest: prismic.ColorField;
+
+  /**
+   * Dark field in *Color*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: color.dark
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  dark: prismic.ColorField;
+
+  /**
+   * Mid field in *Color*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: color.mid
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  mid: prismic.ColorField;
+
+  /**
+   * Light field in *Color*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: color.light
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  light: prismic.ColorField;
+
+  /**
+   * Lightest field in *Color*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: color.lightest
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  lightest: prismic.ColorField;
+}
+
+/**
+ * Color document from Prismic
+ *
+ * - **API ID**: `color`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ColorDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<ColorDocumentData>, "color", Lang>;
+
 type FooterDocumentDataSlicesSlice =
   | SocialsSelectorSlice
   | LogoSelectorSlice
-  | NavSlice
-  | TestSlice;
+  | NavSlice;
 
 /**
  * Content for Footer documents
@@ -42,7 +124,7 @@ export type FooterDocument<Lang extends string = string> =
     Lang
   >;
 
-type HeaderDocumentDataSlicesSlice = TestSlice;
+type HeaderDocumentDataSlicesSlice = never;
 
 /**
  * Content for Header documents
@@ -342,6 +424,7 @@ export type SocialsDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | ColorDocument
   | FooterDocument
   | HeaderDocument
   | HomePageDocument
@@ -629,6 +712,8 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      ColorDocument,
+      ColorDocumentData,
       FooterDocument,
       FooterDocumentData,
       FooterDocumentDataSlicesSlice,

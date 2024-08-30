@@ -19,9 +19,6 @@
             },
             "nav": {
               "type": "SharedSlice"
-            },
-            "test": {
-              "type": "SharedSlice"
             }
           }
         }

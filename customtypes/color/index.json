@@ -1,0 +1,53 @@
+{
+  "format": "custom",
+  "id": "color",
+  "label": "Color",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "brand": {
+        "type": "Color",
+        "config": {
+          "label": "Brand",
+          "placeholder": ""
+        }
+      },
+      "darkest": {
+        "type": "Color",
+        "config": {
+          "label": "Darkest",
+          "placeholder": ""
+        }
+      },
+      "dark": {
+        "type": "Color",
+        "config": {
+          "label": "Dark",
+          "placeholder": ""
+        }
+      },
+      "mid": {
+        "type": "Color",
+        "config": {
+          "label": "Mid",
+          "placeholder": ""
+        }
+      },
+      "light": {
+        "type": "Color",
+        "config": {
+          "label": "Light",
+          "placeholder": ""
+        }
+      },
+      "lightest": {
+        "type": "Color",
+        "config": {
+          "label": "Lightest",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}

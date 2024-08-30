@@ -1,7 +1,7 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { repositoryName } from '@/prismicio';
+import { createClient, repositoryName } from '@/prismicio';
 import { PrismicPreview } from '@prismicio/next';
 
 import "./globals.css";
@@ -16,9 +16,21 @@ export const metadata = {
   description: "Fotografering og hårstyling",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const client = createClient();
+  const color = await client.getSingle("color")
   return (
     <html lang="da" className="scroll-smooth scroll-pt-16">
+      <style>
+        :root {`{
+          --brand: ${color.data.brand};
+          --darkest: ${color.data.darkest};
+          --dark: ${color.data.dark};
+          --mid: ${color.data.mid};
+          --light: ${color.data.light};
+          --lightest: ${color.data.lightest};
+        }`}
+      </style>
       <body id="home" className="bg-lightest relative text-base md:text-sm">
         {children}
         <PrismicPreview repositoryName={repositoryName} />
