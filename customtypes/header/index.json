@@ -1,0 +1,46 @@
+{
+  "format": "custom",
+  "id": "header",
+  "label": "Header",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "logo": {
+        "type": "Link",
+        "config": {
+          "label": "Logo",
+          "select": "document",
+          "customtypes": ["logo"]
+        }
+      },
+      "nav": {
+        "type": "Link",
+        "config": {
+          "label": "Nav",
+          "select": "document",
+          "customtypes": ["navs"]
+        }
+      },
+      "socials": {
+        "type": "Link",
+        "config": {
+          "label": "Socials",
+          "select": "document",
+          "customtypes": ["socials"]
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "test": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}

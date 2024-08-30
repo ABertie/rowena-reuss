@@ -1,0 +1,29 @@
+{
+  "id": "logo_selector",
+  "type": "SharedSlice",
+  "name": "LogoSelector",
+  "description": "LogoSelector",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "logo": {
+          "type": "Link",
+          "config": {
+            "label": "Logo",
+            "select": "document",
+            "customtypes": [
+              "logo"
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

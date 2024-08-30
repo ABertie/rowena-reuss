@@ -4,6 +4,111 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type FooterDocumentDataSlicesSlice =
+  | SocialsSelectorSlice
+  | LogoSelectorSlice
+  | NavSlice
+  | TestSlice;
+
+/**
+ * Content for Footer documents
+ */
+interface FooterDocumentData {
+  /**
+   * Slice Zone field in *Footer*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<FooterDocumentDataSlicesSlice>;
+}
+
+/**
+ * Footer document from Prismic
+ *
+ * - **API ID**: `footer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FooterDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<FooterDocumentData>,
+    "footer",
+    Lang
+  >;
+
+type HeaderDocumentDataSlicesSlice = TestSlice;
+
+/**
+ * Content for Header documents
+ */
+interface HeaderDocumentData {
+  /**
+   * Logo field in *Header*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  logo: prismic.ContentRelationshipField<"logo">;
+
+  /**
+   * Nav field in *Header*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.nav
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  nav: prismic.ContentRelationshipField<"navs">;
+
+  /**
+   * Socials field in *Header*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.socials
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  socials: prismic.ContentRelationshipField<"socials">;
+
+  /**
+   * Slice Zone field in *Header*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<HeaderDocumentDataSlicesSlice>;
+}
+
+/**
+ * Header document from Prismic
+ *
+ * - **API ID**: `header`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type HeaderDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<HeaderDocumentData>,
+    "header",
+    Lang
+  >;
+
 type HomePageDocumentDataSlicesSlice = AboutSlice;
 
 /**
@@ -69,7 +174,181 @@ export type HomePageDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = HomePageDocument;
+/**
+ * Content for Link documents
+ */
+interface LinkDocumentData {
+  /**
+   * Name field in *Link*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: link.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Link field in *Link*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: link.link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Link document from Prismic
+ *
+ * - **API ID**: `link`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type LinkDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<LinkDocumentData>, "link", Lang>;
+
+/**
+ * Content for Logo documents
+ */
+interface LogoDocumentData {
+  /**
+   * Logo field in *Logo*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  logo: prismic.RichTextField;
+}
+
+/**
+ * Logo document from Prismic
+ *
+ * - **API ID**: `logo`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type LogoDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<LogoDocumentData>, "logo", Lang>;
+
+/**
+ * Item in *Navs → Links*
+ */
+export interface NavsDocumentDataLinksItem {
+  /**
+   * Link field in *Navs → Links*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navs.links[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.ContentRelationshipField<"link">;
+}
+
+/**
+ * Content for Navs documents
+ */
+interface NavsDocumentData {
+  /**
+   * Links field in *Navs*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navs.links[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  links: prismic.GroupField<Simplify<NavsDocumentDataLinksItem>>;
+}
+
+/**
+ * Navs document from Prismic
+ *
+ * - **API ID**: `navs`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type NavsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<NavsDocumentData>, "navs", Lang>;
+
+/**
+ * Item in *Socials → Socials*
+ */
+export interface SocialsDocumentDataSocialsItem {
+  /**
+   * Link field in *Socials → Socials*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: socials.socials[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.ContentRelationshipField<"link">;
+
+  /**
+   * Icon field in *Socials → Socials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: socials.socials[].icon
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  icon: prismic.KeyTextField;
+}
+
+/**
+ * Content for Socials documents
+ */
+interface SocialsDocumentData {
+  /**
+   * Socials field in *Socials*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: socials.socials[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  socials: prismic.GroupField<Simplify<SocialsDocumentDataSocialsItem>>;
+}
+
+/**
+ * Socials document from Prismic
+ *
+ * - **API ID**: `socials`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SocialsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<SocialsDocumentData>,
+    "socials",
+    Lang
+  >;
+
+export type AllDocumentTypes =
+  | FooterDocument
+  | HeaderDocument
+  | HomePageDocument
+  | LinkDocument
+  | LogoDocument
+  | NavsDocument
+  | SocialsDocument;
 
 /**
  * Item in *About → Default → Primary → Text*
@@ -163,6 +442,138 @@ type AboutSliceVariation = AboutSliceDefault;
 export type AboutSlice = prismic.SharedSlice<"about", AboutSliceVariation>;
 
 /**
+ * Primary content in *LogoSelector → Default → Primary*
+ */
+export interface LogoSelectorSliceDefaultPrimary {
+  /**
+   * Logo field in *LogoSelector → Default → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo_selector.default.primary.logo
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  logo: prismic.ContentRelationshipField<"logo">;
+}
+
+/**
+ * Default variation for LogoSelector Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LogoSelectorSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<LogoSelectorSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *LogoSelector*
+ */
+type LogoSelectorSliceVariation = LogoSelectorSliceDefault;
+
+/**
+ * LogoSelector Shared Slice
+ *
+ * - **API ID**: `logo_selector`
+ * - **Description**: LogoSelector
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LogoSelectorSlice = prismic.SharedSlice<
+  "logo_selector",
+  LogoSelectorSliceVariation
+>;
+
+/**
+ * Primary content in *Nav → Default → Primary*
+ */
+export interface NavSliceDefaultPrimary {
+  /**
+   * Nav field in *Nav → Default → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nav.default.primary.nav
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  nav: prismic.ContentRelationshipField<"navs">;
+}
+
+/**
+ * Default variation for Nav Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NavSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<NavSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Nav*
+ */
+type NavSliceVariation = NavSliceDefault;
+
+/**
+ * Nav Shared Slice
+ *
+ * - **API ID**: `nav`
+ * - **Description**: Nav
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NavSlice = prismic.SharedSlice<"nav", NavSliceVariation>;
+
+/**
+ * Primary content in *SocialsSelector → Default → Primary*
+ */
+export interface SocialsSelectorSliceDefaultPrimary {
+  /**
+   * Socials field in *SocialsSelector → Default → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: socials_selector.default.primary.socials
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  socials: prismic.ContentRelationshipField<"socials">;
+}
+
+/**
+ * Default variation for SocialsSelector Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SocialsSelectorSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SocialsSelectorSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *SocialsSelector*
+ */
+type SocialsSelectorSliceVariation = SocialsSelectorSliceDefault;
+
+/**
+ * SocialsSelector Shared Slice
+ *
+ * - **API ID**: `socials_selector`
+ * - **Description**: SocialsSelector
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SocialsSelectorSlice = prismic.SharedSlice<
+  "socials_selector",
+  SocialsSelectorSliceVariation
+>;
+
+/**
  * Primary content in *ChooseColor → Default → Primary*
  */
 export interface TestSliceDefaultPrimary {
@@ -218,15 +629,43 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      FooterDocument,
+      FooterDocumentData,
+      FooterDocumentDataSlicesSlice,
+      HeaderDocument,
+      HeaderDocumentData,
+      HeaderDocumentDataSlicesSlice,
       HomePageDocument,
       HomePageDocumentData,
       HomePageDocumentDataSlicesSlice,
+      LinkDocument,
+      LinkDocumentData,
+      LogoDocument,
+      LogoDocumentData,
+      NavsDocument,
+      NavsDocumentData,
+      NavsDocumentDataLinksItem,
+      SocialsDocument,
+      SocialsDocumentData,
+      SocialsDocumentDataSocialsItem,
       AllDocumentTypes,
       AboutSlice,
       AboutSliceDefaultPrimaryTextItem,
       AboutSliceDefaultPrimary,
       AboutSliceVariation,
       AboutSliceDefault,
+      LogoSelectorSlice,
+      LogoSelectorSliceDefaultPrimary,
+      LogoSelectorSliceVariation,
+      LogoSelectorSliceDefault,
+      NavSlice,
+      NavSliceDefaultPrimary,
+      NavSliceVariation,
+      NavSliceDefault,
+      SocialsSelectorSlice,
+      SocialsSelectorSliceDefaultPrimary,
+      SocialsSelectorSliceVariation,
+      SocialsSelectorSliceDefault,
       TestSlice,
       TestSliceDefaultPrimary,
       TestSliceVariation,

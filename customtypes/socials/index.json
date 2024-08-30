@@ -1,0 +1,35 @@
+{
+  "format": "custom",
+  "id": "socials",
+  "label": "Socials",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "socials": {
+        "type": "Group",
+        "config": {
+          "label": "Socials",
+          "repeat": true,
+          "fields": {
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "select": "document",
+                "customtypes": ["link"]
+              }
+            },
+            "icon": {
+              "type": "Text",
+              "config": {
+                "label": "Icon",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

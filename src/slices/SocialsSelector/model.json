@@ -1,0 +1,29 @@
+{
+  "id": "socials_selector",
+  "type": "SharedSlice",
+  "name": "SocialsSelector",
+  "description": "SocialsSelector",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "socials": {
+          "type": "Link",
+          "config": {
+            "label": "Socials",
+            "select": "document",
+            "customtypes": [
+              "socials"
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

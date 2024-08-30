@@ -4,5 +4,8 @@ import dynamic from "next/dynamic";
 
 export const components = {
   about: dynamic(() => import("./About")),
+  logo_selector: dynamic(() => import("./LogoSelector")),
+  nav: dynamic(() => import("./Nav")),
+  socials_selector: dynamic(() => import("./SocialsSelector")),
   test: dynamic(() => import("./ChooseColor")),
 };

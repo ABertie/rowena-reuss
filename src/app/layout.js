@@ -6,6 +6,11 @@ import { PrismicPreview } from '@prismicio/next';
 
 import "./globals.css";
 
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import React from 'react';
+config.autoAddCss = false
+
 export const metadata = {
   title: "Rowena Reuss",
   description: "Fotografering og hårstyling",

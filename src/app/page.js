@@ -6,23 +6,30 @@ import Footer from "@/components/footer";
 
 import GetKit from "@/actions/kit-list";
 import { createClient } from "@/prismicio";
+import MainNav from "@/components/mainNav";
+import { SliceZone } from "@prismicio/react";
 
 export default async function Home() {
   const client = createClient();
-  const page = await client.getSingle("home_page");
-  let kit = await GetKit("/carousel/")
+  const page = await client.getSingle("home_page")
+  const kit = await GetKit("/carousel/")
+
+  // console.log(page.data.slices[0].primary);
 
   return (
     <>
-      <Header />
+      <Header>
+        <MainNav />
+      </Header>
       <main>
         <Carousel images={kit}></Carousel>
 
-        <div id="aboutme" >
-          {page.data.slices.map(item => (
-            item.slice_type === 'about' && <About key={item.slice_type} Primary={item.primary} />
-            ))}
-        </div>
+        <SliceZone
+          slices={page.data.slices}
+          components={{
+            about: (item) => <About Primary={item.slice.primary} />,
+          }}
+        />
 
         <div id="contakt">
           <ToMail />
